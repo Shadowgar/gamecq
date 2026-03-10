@@ -131,10 +131,13 @@ Database service is currently started with `--sql_mode=` to accept legacy `gamec
 
 Server services now reference configs from `runtime/config` (`../config/*.ini`) and the runner entrypoint fails fast if the service binary or config file is missing.
 
-Current runtime blocker after bootstrap build:
+Current runtime blockers after bootstrap build:
 
-- `metaserver` container is currently restarting with exit code `139` (segfault) in full-stack compose run.
-- Other services (`db`, `web`, `processserver`, `mirrorserver`, `darkspaceserver`) can be brought up with the current bootstrap pipeline.
+- `metaserver` container restarts with exit code `139` (segfault) in full-stack compose run.
+- `processserver` container restarts with exit code `139` (segfault) in full-stack compose run.
+- `mirrorserver` container restarts with exit code `139` (segfault) in full-stack compose run.
+- `darkspaceserver` container restarts with exit code `1` in full-stack compose run.
+- `db` and `web` are currently the only stable services in the stack smoke test.
 
 ## Web service note
 

@@ -84,6 +84,23 @@
   - `stage-server-binaries.ps1`, `stage-server-config.ps1`, `stage-darkspace-data.ps1`, and `validate-runtime.ps1` all pass.
   - Full compose stack starts; `db`, `web`, `processserver`, `mirrorserver`, `darkspaceserver` are up.
   - `metaserver` currently restarts with exit code `139` (segfault) and remains the active blocker.
+- Runtime smoke-test refresh (post-`revivial` -> `revival` rename cleanup):
+  - staged runtime via:
+    - `scripts/stage-medusa-runtime.ps1`
+    - `scripts/stage-server-binaries.ps1`
+    - `scripts/stage-server-config.ps1`
+    - `scripts/stage-darkspace-data.ps1`
+    - `scripts/validate-runtime.ps1` (pass)
+  - compose bring-up via:
+    - `docker compose -f gamecq/revival/docker-compose.server.yml up -d --build`
+  - observed container state:
+    - `db`: healthy
+    - `web`: up and serving (`http://127.0.0.1:8080` returns HTTP 200)
+    - `metaserver`: restarting with exit `139` (segfault)
+    - `processserver`: restarting with exit `139` (segfault)
+    - `mirrorserver`: restarting with exit `139` (segfault)
+    - `darkspaceserver`: restarting with exit `1`
+  - `runtime/logs/{MetaServer,ProcessServer,MirrorServer}.log` remain empty; crash output is currently only visible in container stdout/stderr.
 
 ## Notes
 
