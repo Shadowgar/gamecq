@@ -101,6 +101,15 @@
     - `mirrorserver`: restarting with exit `139` (segfault)
     - `darkspaceserver`: restarting with exit `1`
   - `runtime/logs/{MetaServer,ProcessServer,MirrorServer}.log` remain empty; crash output is currently only visible in container stdout/stderr.
+- Bootstrap pipeline performance/operability updates:
+  - `revival/scripts/build-linux-server-bootstrap.ps1` now supports:
+    - `-MakeJobs <n>` (parallel make jobs passed to builder container)
+    - `-SkipImageBuild` (reuses existing builder image for faster iteration)
+  - `revival/docker/builder/build-legacy-linux.sh` now:
+    - accepts `MAKE_JOBS` and parallelizes `make` with `-j`
+    - uses quiet make mode (`-s`) to reduce terminal spam
+    - suppresses non-actionable compiler warning noise via `-w` in bootstrap CXX flags
+  - Verified bootstrap build now completes in finite time after patch (no infinite hang); runtime remains blocked by server segfault issues.
 
 ## Notes
 

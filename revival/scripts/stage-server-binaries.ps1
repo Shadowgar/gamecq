@@ -65,13 +65,10 @@ foreach ($entry in $sharedLibMap) {
     Write-Host "Staged $($entry.Name)"
 }
 
-$mysqlClientLibs = Get-ChildItem -Path $sourceGamecq -Filter "libmysqlclient.so*" -File -ErrorAction SilentlyContinue
-if ($mysqlClientLibs.Count -eq 0) {
-    throw "Missing mysql runtime libs for staging in: $sourceGamecq"
-}
-foreach ($lib in $mysqlClientLibs) {
-    Copy-Item -LiteralPath $lib.FullName -Destination (Join-Path -Path $targetDir -ChildPath $lib.Name) -Force
-    Write-Host "Staged $($lib.Name)"
+# Use distro mysql client runtime from runner image to avoid legacy libmysqlclient crashes.
+Get-ChildItem -Path $targetDir -Filter "libmysqlclient.so*" -File -ErrorAction SilentlyContinue | ForEach-Object {
+    Remove-Item -LiteralPath $_.FullName -Force
+    Write-Host "Removed stale $($_.Name)"
 }
 
 $luaLibs = Get-ChildItem -Path $sourceDarkspace -Filter "liblua5.1.so*" -File -ErrorAction SilentlyContinue

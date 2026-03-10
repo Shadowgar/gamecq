@@ -3,6 +3,8 @@ set -euo pipefail
 
 SRC_ROOT="${WORKSPACE_ROOT:-/workspace}"
 BUILD_ROOT="/tmp/dswork"
+MAKE_JOBS="${MAKE_JOBS:-$(nproc)}"
+CXX_BASE_FLAGS="${CXX_BASE_FLAGS:--fpermissive -DMEDUSA_DISABLE_LUA_JIT_MODULE -w}"
 
 rm -rf "${BUILD_ROOT}"
 mkdir -p "${BUILD_ROOT}"
@@ -26,7 +28,7 @@ mkdir -p /home/builder/work/Trunk/Medusa/ReleaseLinux/obj
 mkdir -p /home/builder/work/Trunk/Medusa/Medusa/ReleaseLinux
 ln -sfn /home/builder/work/Trunk/Medusa/ReleaseLinux/obj /home/builder/work/Trunk/Medusa/Medusa/ReleaseLinux/obj
 
-# Replace bundled legacy 32-bit mysql client libs with host-arch dev package symlink.
+# Replace bundled legacy 32-bit mysql client libs with host-arch MariaDB compatibility symlink.
 MYSQL_LIB_DIR="${BUILD_ROOT}/gamecq/ThirdParty/mysql/x86-Linux/lib"
 rm -f "${MYSQL_LIB_DIR}/libmysqlclient.a" "${MYSQL_LIB_DIR}/libmysqlclient.so" "${MYSQL_LIB_DIR}/libmysql.so"
 ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so "${MYSQL_LIB_DIR}/libmysqlclient.so"
@@ -38,7 +40,8 @@ ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so "${LUA_LIB_DIR}/liblua51.so"
 
 build_release() {
   local dir="$1"
-  make -C "${dir}" BUILD_CONFIGURATION=ReleaseLinux CXX="g++ -fpermissive -DMEDUSA_DISABLE_LUA_JIT_MODULE"
+  echo "==> Building ${dir} (jobs=${MAKE_JOBS})"
+  make -s -C "${dir}" -j"${MAKE_JOBS}" BUILD_CONFIGURATION=ReleaseLinux CXX="g++ ${CXX_BASE_FLAGS}"
 }
 
 # Core medusa libs
@@ -74,8 +77,6 @@ cp -f gamecq/Bin/libGCQS.so gamecq/out/server-bootstrap/Release/
 cp -f gamecq/Bin/MetaServer gamecq/out/server-bootstrap/Release/
 cp -f gamecq/Bin/ProcessServer gamecq/out/server-bootstrap/Release/
 cp -f gamecq/Bin/MirrorServer gamecq/out/server-bootstrap/Release/
-cp -f /usr/lib/x86_64-linux-gnu/libmysqlclient.so* gamecq/out/server-bootstrap/Release/
-
 cp -f darkspace/Bin/libDarkSpace.so darkspace/out/server-bootstrap/Release/
 cp -f darkspace/Bin/DarkSpaceServer darkspace/out/server-bootstrap/Release/
 cp -f /usr/lib/x86_64-linux-gnu/liblua5.1.so* darkspace/out/server-bootstrap/Release/

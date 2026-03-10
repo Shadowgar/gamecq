@@ -1,5 +1,7 @@
 param(
-    [string]$ImageTag = "darkspace-legacy-builder:latest"
+    [string]$ImageTag = "darkspace-legacy-builder:latest",
+    [int]$MakeJobs = 0,
+    [switch]$SkipImageBuild
 )
 
 Set-StrictMode -Version Latest
@@ -10,13 +12,21 @@ $workspaceRoot = [System.IO.Path]::GetFullPath((Join-Path -Path $revivalRoot -Ch
 $dockerfile = Join-Path -Path $revivalRoot -ChildPath "docker\builder\Dockerfile"
 
 Write-Host "Building legacy Linux builder image..."
-docker build -t $ImageTag -f $dockerfile $revivalRoot
-if ($LASTEXITCODE -ne 0) {
-    throw "Failed to build builder image."
+if (-not $SkipImageBuild) {
+    docker build -t $ImageTag -f $dockerfile $revivalRoot
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to build builder image."
+    }
+} else {
+    Write-Host "Skipping builder image build."
+}
+
+if ($MakeJobs -le 0) {
+    $MakeJobs = [Environment]::ProcessorCount
 }
 
 Write-Host "Running legacy Linux build..."
-docker run --rm -v "${workspaceRoot}:/workspace" -e WORKSPACE_ROOT=/workspace $ImageTag
+docker run --rm -v "${workspaceRoot}:/workspace" -e WORKSPACE_ROOT=/workspace -e MAKE_JOBS=$MakeJobs $ImageTag
 if ($LASTEXITCODE -ne 0) {
     throw "Legacy Linux build failed."
 }

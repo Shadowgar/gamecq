@@ -10,7 +10,8 @@ RUN apt-get update \
        gcc \
        g++ \
        libc6-dev \
-       default-libmysqlclient-dev \
+       libmariadb-dev \
+       libmariadb-dev-compat \
        liblua5.1-0-dev \
        bash \
     && rm -rf /var/lib/apt/lists/*

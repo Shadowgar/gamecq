@@ -62,6 +62,13 @@ Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\build-linux-server-bootstrap.ps1
 ```
 
+For faster local iteration (skip image rebuild and use explicit parallelism):
+
+```powershell
+Set-Location d:\DarkSpace\gamecq\revival
+powershell -ExecutionPolicy Bypass -File .\scripts\build-linux-server-bootstrap.ps1 -SkipImageBuild -MakeJobs 8
+```
+
 This emits release artifacts to:
 
 - `medusa/out/server-bootstrap/Release`
