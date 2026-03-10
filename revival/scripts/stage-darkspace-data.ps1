@@ -14,9 +14,9 @@ function Resolve-NormalizedPath {
     return [System.IO.Path]::GetFullPath((Join-Path -Path $BasePath -ChildPath $PathValue))
 }
 
-$revivialRoot = Split-Path -Parent $PSScriptRoot
-$sourceDir = Resolve-NormalizedPath -PathValue $SourcePortsDir -BasePath $revivialRoot
-$targetDir = Resolve-NormalizedPath -PathValue $RuntimeDataDir -BasePath $revivialRoot
+$revivalRoot = Split-Path -Parent $PSScriptRoot
+$sourceDir = Resolve-NormalizedPath -PathValue $SourcePortsDir -BasePath $revivalRoot
+$targetDir = Resolve-NormalizedPath -PathValue $RuntimeDataDir -BasePath $revivalRoot
 
 if (-not (Test-Path -LiteralPath $sourceDir)) {
     throw "Ports source not found: $sourceDir"

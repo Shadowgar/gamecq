@@ -25,7 +25,7 @@ This plan aligns backend services with the `medusa` modernization effort.
 
 - Add modern build definitions that emit Linux server binaries for containers.
 - Add CI build + smoke tests for service startup and health endpoints.
-- Standardize artifact output for `revivial/runtime/bin`.
+- Standardize artifact output for `revival/runtime/bin`.
 
 ## Phase 4: Service Observability
 
@@ -36,4 +36,4 @@ This plan aligns backend services with the `medusa` modernization effort.
 ## Constraints
 
 - Preserve network/protocol compatibility while clients are still legacy.
-- Coordinate any protocol-impacting change with `medusa/revivial/MODERNIZATION_PLAN.md`.
+- Coordinate any protocol-impacting change with `medusa/revival/MODERNIZATION_PLAN.md`.

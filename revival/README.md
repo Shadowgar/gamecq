@@ -31,4 +31,4 @@ This folder tracks all server orchestration work in `gamecq`.
 ## Drift control rules
 
 - Any change to service ports, credentials, hostnames, startup command, or DB schema assumptions must be logged in `DRIFT_LOG.md`.
-- Any change that impacts `darkspace` runtime or `medusa` shared protocol must be cross-logged in those repos' `revivial/DRIFT_LOG.md`.
+- Any change that impacts `darkspace` runtime or `medusa` shared protocol must be cross-logged in those repos' `revival/DRIFT_LOG.md`.

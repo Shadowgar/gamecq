@@ -26,7 +26,7 @@
 
 - `Web.sln`
   - Legacy web solution reference points to external HTTP path (not locally buildable as-is).
-- `revivial/runtime/webroot` (new runtime contract)
+- `revival/runtime/webroot` (new runtime contract)
   - Container-served web root path for server-side web hosting in compose.
 
 ## External dependencies

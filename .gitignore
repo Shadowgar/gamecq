@@ -24,3 +24,17 @@ Service/NTServiceEventLogMsg.rc
 UpgradeLog.htm
 unsuccessfulbuild
 ReleaseLinux
+
+# Revival generated artifacts
+out/
+revival/out/
+revival/runtime/bin/*
+revival/runtime/logs/*
+revival/runtime/mirror/*
+revival/runtime/config/*.ini
+revival/.env
+revival/out/*.log
+
+# Keep tracked placeholders/content
+!revival/runtime/**/.gitkeep
+!revival/runtime/webroot/index.html

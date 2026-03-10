@@ -16,12 +16,12 @@ function Resolve-NormalizedPath {
     return [System.IO.Path]::GetFullPath((Join-Path -Path $BasePath -ChildPath $PathValue))
 }
 
-$revivialRoot = Split-Path -Parent $PSScriptRoot
-$gamecqRoot = Resolve-NormalizedPath -PathValue ".." -BasePath $revivialRoot
+$revivalRoot = Split-Path -Parent $PSScriptRoot
+$gamecqRoot = Resolve-NormalizedPath -PathValue ".." -BasePath $revivalRoot
 $sourceGamecq = Resolve-NormalizedPath -PathValue $GamecqBuildDir -BasePath $gamecqRoot
-$sourceDarkspace = Resolve-NormalizedPath -PathValue $DarkspaceBuildDir -BasePath $revivialRoot
-$sourceMedusa = Resolve-NormalizedPath -PathValue $MedusaBuildDir -BasePath $revivialRoot
-$targetDir = Resolve-NormalizedPath -PathValue $RuntimeBinDir -BasePath $revivialRoot
+$sourceDarkspace = Resolve-NormalizedPath -PathValue $DarkspaceBuildDir -BasePath $revivalRoot
+$sourceMedusa = Resolve-NormalizedPath -PathValue $MedusaBuildDir -BasePath $revivalRoot
+$targetDir = Resolve-NormalizedPath -PathValue $RuntimeBinDir -BasePath $revivalRoot
 
 if (-not (Test-Path -LiteralPath $targetDir)) {
     New-Item -ItemType Directory -Path $targetDir -Force | Out-Null

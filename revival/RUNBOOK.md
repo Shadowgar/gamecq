@@ -6,7 +6,7 @@ Define repeatable startup path for server-side stack and reduce config drift.
 
 ## Layout expected by compose
 
-Create these directories under `gamecq/revivial/runtime/`:
+Create these directories under `gamecq/revival/runtime/`:
 
 - `bin/` (service binaries)
 - `config/` (service config files)
@@ -42,7 +42,7 @@ docker compose -f docker-compose.server.yml logs -f
 Before starting server containers, stage shared `medusa` runtime DLLs into `runtime/bin` (Windows host/runtime compatibility helper):
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\stage-medusa-runtime.ps1
 ```
 
@@ -58,7 +58,7 @@ Optional symbols (`*.pdb`) are copied when present.
 Produce Linux binaries/shared libs using legacy makefiles in a build container:
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\build-linux-server-bootstrap.ps1
 ```
 
@@ -73,7 +73,7 @@ This emits release artifacts to:
 After building server executables, stage them into `runtime/bin`:
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\stage-server-binaries.ps1
 ```
 
@@ -90,7 +90,7 @@ Default source expectations:
 Generate container-ready configs in `runtime/config`:
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\stage-server-config.ps1
 ```
 
@@ -106,7 +106,7 @@ This produces:
 Copy DarkSpace port data required by `DarkSpaceServer` context loading:
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\stage-darkspace-data.ps1
 ```
 
@@ -117,7 +117,7 @@ This stages `darkspace/Ports/*` into `runtime/data`.
 Run preflight validation:
 
 ```powershell
-Set-Location d:\DarkSpace\gamecq\revivial
+Set-Location d:\DarkSpace\gamecq\revival
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-runtime.ps1
 ```
 
@@ -125,7 +125,7 @@ This checks required `runtime/` folders, required configs, Medusa runtime DLLs, 
 
 ## Current known gap
 
-Compose/runtime contract is in place, but this repo does not yet produce Linux server binaries directly in-container. Next step is a build pipeline that emits binaries into `revivial/runtime/bin`.
+Compose/runtime contract is in place, but this repo does not yet produce Linux server binaries directly in-container. Next step is a build pipeline that emits binaries into `revival/runtime/bin`.
 
 Database service is currently started with `--sql_mode=` to accept legacy `gamecq.sql` defaults.
 

@@ -5,12 +5,12 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$revivialRoot = Split-Path -Parent $PSScriptRoot
-$workspaceRoot = [System.IO.Path]::GetFullPath((Join-Path -Path $revivialRoot -ChildPath "..\.."))
-$dockerfile = Join-Path -Path $revivialRoot -ChildPath "docker\builder\Dockerfile"
+$revivalRoot = Split-Path -Parent $PSScriptRoot
+$workspaceRoot = [System.IO.Path]::GetFullPath((Join-Path -Path $revivalRoot -ChildPath "..\.."))
+$dockerfile = Join-Path -Path $revivalRoot -ChildPath "docker\builder\Dockerfile"
 
 Write-Host "Building legacy Linux builder image..."
-docker build -t $ImageTag -f $dockerfile $revivialRoot
+docker build -t $ImageTag -f $dockerfile $revivalRoot
 if ($LASTEXITCODE -ne 0) {
     throw "Failed to build builder image."
 }

@@ -13,8 +13,8 @@ function Resolve-NormalizedPath {
     return [System.IO.Path]::GetFullPath((Join-Path -Path $BasePath -ChildPath $PathValue))
 }
 
-$revivialRoot = Split-Path -Parent $PSScriptRoot
-$runtimeRoot = Resolve-NormalizedPath -PathValue $RuntimeRoot -BasePath $revivialRoot
+$revivalRoot = Split-Path -Parent $PSScriptRoot
+$runtimeRoot = Resolve-NormalizedPath -PathValue $RuntimeRoot -BasePath $revivalRoot
 $binDir = Join-Path -Path $runtimeRoot -ChildPath "bin"
 $configDir = Join-Path -Path $runtimeRoot -ChildPath "config"
 

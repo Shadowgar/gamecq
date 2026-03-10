@@ -2,7 +2,7 @@
 
 ## 2026-03-10
 
-- Initialized `gamecq/revivial/` documentation and orchestration baseline:
+- Initialized `gamecq/revival/` documentation and orchestration baseline:
   - `README.md`
   - `COMPONENT_MAP.md`
   - `DRIFT_LOG.md` (this file)
@@ -31,29 +31,29 @@
 - Replaced hardcoded historical remote build login string in project metadata with placeholder value:
   - `builder@example.invalid:22` now used instead of prior credential-like host string.
 - Hardened compose defaults to run without a pre-created `.env` file.
-- Added tracked runtime skeleton directories under `revivial/runtime/`.
+- Added tracked runtime skeleton directories under `revival/runtime/`.
 - Validated compose syntax using:
-  - `docker compose -f gamecq/revivial/docker-compose.server.yml config`
+  - `docker compose -f gamecq/revival/docker-compose.server.yml config`
 - Added legacy schema compatibility to DB service:
   - `db.command: ["--sql_mode="]` for `gamecq.sql` import compatibility.
 - Decoupled `web` startup dependency from metaserver so `db+web` can be tested independently.
 - Verified partial stack runtime:
-  - `docker compose -f gamecq/revivial/docker-compose.server.yml up -d db web`
+  - `docker compose -f gamecq/revival/docker-compose.server.yml up -d db web`
   - `docker compose ... ps` showed `ds-db` healthy and `ds-web` up
   - `curl http://localhost:8080` returned `runtime/webroot/index.html`
 - Added runtime staging automation for shared Medusa dependencies:
-  - `revivial/scripts/stage-medusa-runtime.ps1` copies `Medusa.dll` + `Network.dll` from `medusa` CMake output into `revivial/runtime/bin`.
+  - `revival/scripts/stage-medusa-runtime.ps1` copies `Medusa.dll` + `Network.dll` from `medusa` CMake output into `revival/runtime/bin`.
 - Added server config staging automation:
-  - `revivial/scripts/stage-server-config.ps1` generates/stages:
+  - `revival/scripts/stage-server-config.ps1` generates/stages:
     - `runtime/config/MetaServer.ini` (new generated baseline)
     - `runtime/config/ProcessServer.ini` (container host rewrites)
     - `runtime/config/MirrorServer.ini` (container host/path rewrites)
     - `runtime/config/config.ini` (DarkSpaceServer path/meta host rewrites)
   - rewrites remove `127.0.0.1` assumptions for cross-container service discovery (`metaserver`, `mirrorserver`, `db`).
 - Added runtime preflight validator:
-  - `revivial/scripts/validate-runtime.ps1` verifies required runtime directories, service binaries, Medusa runtime DLLs, and required config files before compose startup.
+  - `revival/scripts/validate-runtime.ps1` verifies required runtime directories, service binaries, Medusa runtime DLLs, and required config files before compose startup.
 - Added server executable staging automation:
-  - `revivial/scripts/stage-server-binaries.ps1` copies expected service executables (`MetaServer`, `ProcessServer`, `MirrorServer`, `DarkSpaceServer`) from bootstrap build output folders into `runtime/bin`.
+  - `revival/scripts/stage-server-binaries.ps1` copies expected service executables (`MetaServer`, `ProcessServer`, `MirrorServer`, `DarkSpaceServer`) from bootstrap build output folders into `runtime/bin`.
   - extended staging to include required Linux shared libraries (`libGCQDB.so`, `libGCQS.so`, `libmysql.so`, `libDarkSpace.so`, `libMedusa.so`, `libNetwork.so`, `libGCQ.so`, `libRender3D.so`, `libWorld.so`).
 - Updated service startup contract in compose:
   - service commands now reference config files from `runtime/config` (`../config/*.ini`) instead of assuming configs in `runtime/bin`.
@@ -62,17 +62,17 @@
   - when config argument uses `../config/*`, verifies config exists in `/opt/darkspace/config`.
 - Updated `RUNBOOK.md` with Medusa runtime staging step before container bring-up.
 - Added legacy Linux builder pipeline:
-  - `revivial/docker/builder/Dockerfile`
-  - `revivial/docker/builder/build-legacy-linux.sh`
-  - `revivial/scripts/build-linux-server-bootstrap.ps1`
+  - `revival/docker/builder/Dockerfile`
+  - `revival/docker/builder/build-legacy-linux.sh`
+  - `revival/scripts/build-linux-server-bootstrap.ps1`
   - this pipeline compiles required legacy libs/services and emits staged artifacts in:
     - `medusa/out/server-bootstrap/Release`
     - `gamecq/out/server-bootstrap/Release`
     - `darkspace/out/server-bootstrap/Release`
 - Updated runtime preflight contract:
-  - `revivial/scripts/validate-runtime.ps1` now checks Linux container runtime dependencies (`lib*.so`) instead of Windows DLL names.
+  - `revival/scripts/validate-runtime.ps1` now checks Linux container runtime dependencies (`lib*.so`) instead of Windows DLL names.
 - Added DarkSpace data staging automation:
-  - `revivial/scripts/stage-darkspace-data.ps1` stages `darkspace/Ports/*` into `revivial/runtime/data` for `DarkSpaceServer` context/resource loading.
+  - `revival/scripts/stage-darkspace-data.ps1` stages `darkspace/Ports/*` into `revival/runtime/data` for `DarkSpaceServer` context/resource loading.
 - Added legacy Linux build compatibility fixes:
   - builder now compiles in case-sensitive in-container workspace copy (Windows mount cannot host mixed-case path aliases).
   - builder injects `-fpermissive` and `-DMEDUSA_DISABLE_LUA_JIT_MODULE` for legacy 64-bit portability.

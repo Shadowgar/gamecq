@@ -28,10 +28,10 @@ function Set-IniValue {
     return ($Text.TrimEnd() + [Environment]::NewLine + $replacement + [Environment]::NewLine)
 }
 
-$revivialRoot = Split-Path -Parent $PSScriptRoot
-$repoRoot = Resolve-NormalizedPath -PathValue ".." -BasePath $revivialRoot
-$darkspaceRoot = Resolve-NormalizedPath -PathValue "..\..\darkspace" -BasePath $revivialRoot
-$targetDir = Resolve-NormalizedPath -PathValue $RuntimeConfigDir -BasePath $revivialRoot
+$revivalRoot = Split-Path -Parent $PSScriptRoot
+$repoRoot = Resolve-NormalizedPath -PathValue ".." -BasePath $revivalRoot
+$darkspaceRoot = Resolve-NormalizedPath -PathValue "..\..\darkspace" -BasePath $revivalRoot
+$targetDir = Resolve-NormalizedPath -PathValue $RuntimeConfigDir -BasePath $revivalRoot
 
 if (-not (Test-Path -LiteralPath $targetDir)) {
     New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
