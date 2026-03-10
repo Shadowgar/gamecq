@@ -121,10 +121,10 @@
                 0
                 </value>
                 <value name="strDebugHostLogin" >
-                builder:god2899@build:2200
+                builder@example.invalid:22
                 </value>
                 <value name="strBuildHostLogin" >
-                builder:god2899@build:2200
+                builder@example.invalid:22
                 </value>
             </values>
         </class>
@@ -254,10 +254,10 @@
                 0
                 </value>
                 <value name="strDebugHostLogin" >
-                builder:god2899@build:2200
+                builder@example.invalid:22
                 </value>
                 <value name="strBuildHostLogin" >
-                builder:god2899@build:2200
+                builder@example.invalid:22
                 </value>
             </values>
         </class>

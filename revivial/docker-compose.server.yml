@@ -1,0 +1,124 @@
+name: darkspace-server
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ds-db
+    restart: unless-stopped
+    command: ["--sql_mode="]
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-darkspace}
+      MYSQL_USER: ${MYSQL_USER:-darkspace}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-darkspace_local_only}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-darkspace_root_local_only}
+      TZ: ${TZ:-UTC}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - ds_mysql_data:/var/lib/mysql
+      - ../gamecq.sql:/docker-entrypoint-initdb.d/001-gamecq.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  metaserver:
+    build:
+      context: .
+      dockerfile: docker/runner/Dockerfile
+    container_name: ds-metaserver
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      TZ: ${TZ:-UTC}
+      RUN_AS_UID: ${RUN_AS_UID:-1000}
+      RUN_AS_GID: ${RUN_AS_GID:-1000}
+      SERVICE_CMD: "./MetaServer ../config/MetaServer.ini"
+    ports:
+      - "${META_PORT:-9000}:9000"
+    volumes:
+      - ./runtime/bin:/opt/darkspace/bin
+      - ./runtime/config:/opt/darkspace/config
+      - ./runtime/logs:/opt/darkspace/logs
+
+  processserver:
+    build:
+      context: .
+      dockerfile: docker/runner/Dockerfile
+    container_name: ds-processserver
+    restart: unless-stopped
+    depends_on:
+      metaserver:
+        condition: service_started
+    environment:
+      TZ: ${TZ:-UTC}
+      RUN_AS_UID: ${RUN_AS_UID:-1000}
+      RUN_AS_GID: ${RUN_AS_GID:-1000}
+      SERVICE_CMD: "./ProcessServer ../config/ProcessServer.ini"
+    ports:
+      - "${PROCESS_PORT:-9300}:9300"
+    volumes:
+      - ./runtime/bin:/opt/darkspace/bin
+      - ./runtime/config:/opt/darkspace/config
+      - ./runtime/logs:/opt/darkspace/logs
+
+  mirrorserver:
+    build:
+      context: .
+      dockerfile: docker/runner/Dockerfile
+    container_name: ds-mirrorserver
+    restart: unless-stopped
+    depends_on:
+      metaserver:
+        condition: service_started
+    environment:
+      TZ: ${TZ:-UTC}
+      RUN_AS_UID: ${RUN_AS_UID:-1000}
+      RUN_AS_GID: ${RUN_AS_GID:-1000}
+      SERVICE_CMD: "./MirrorServer ../config/MirrorServer.ini"
+    ports:
+      - "${MIRROR_PORT:-9100}:9100"
+    volumes:
+      - ./runtime/bin:/opt/darkspace/bin
+      - ./runtime/config:/opt/darkspace/config
+      - ./runtime/logs:/opt/darkspace/logs
+      - ./runtime/mirror:/opt/darkspace/mirror
+
+  darkspaceserver:
+    build:
+      context: .
+      dockerfile: docker/runner/Dockerfile
+    container_name: ds-darkspaceserver
+    restart: unless-stopped
+    depends_on:
+      metaserver:
+        condition: service_started
+      processserver:
+        condition: service_started
+    environment:
+      TZ: ${TZ:-UTC}
+      RUN_AS_UID: ${RUN_AS_UID:-1000}
+      RUN_AS_GID: ${RUN_AS_GID:-1000}
+      SERVICE_CMD: "./DarkSpaceServer ../config/config.ini"
+    ports:
+      - "${DARKSPACE_SERVER_PORT:-9020}:9020"
+    volumes:
+      - ./runtime/bin:/opt/darkspace/bin
+      - ./runtime/config:/opt/darkspace/config
+      - ./runtime/logs:/opt/darkspace/logs
+      - ./runtime/data:/opt/darkspace/data
+
+  web:
+    image: nginx:1.27-alpine
+    container_name: ds-web
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    volumes:
+      - ./runtime/webroot:/usr/share/nginx/html:ro
+
+volumes:
+  ds_mysql_data:

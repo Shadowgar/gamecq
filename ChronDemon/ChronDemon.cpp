@@ -28,7 +28,7 @@ int main(int argc, char ** argv )
 	unsigned int nMinLogLevel = settings.get( "logLevel", LL_STATUS );
 	new FileReactor( logFile, nMinLogLevel, logExclude );
 
-	CharString	metaServer = settings.get( "metaServer", "meta-server.palestar.com" );
+	CharString	metaServer = settings.get( "metaServer", "127.0.0.1" );
 	int		metaServerPort = settings.get( "metaServerPort", 8000 );
 	int		chatRoom = settings.get( "chatRoom", (dword)0 );
 	CharString	user = settings.get( "user", "" );

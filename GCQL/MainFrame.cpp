@@ -276,7 +276,7 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 				m_bUpdateCheck = true;
 
 				Settings settings( CGCQLApp::sConfigName );
-				CharString sMirrorAddress( settings.get( "mirrorAddress", "mirror-server.palestar.com" ) );
+				CharString sMirrorAddress( settings.get( "mirrorAddress", "127.0.0.1" ) );
 				int nMirrorPort( settings.get("mirrorPort", 9100 ) );
 
 				MirrorClient client;

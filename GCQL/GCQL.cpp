@@ -321,7 +321,7 @@ BOOL CGCQLApp::InitInstance()
 	if (! IsDebuggerPresent() )
 	{
 		if (! ClientUpdate::updateSelf( CGCQLApp::sConfigName, 
-			settings.get( "mirrorAddress", "mirror-server.palestar.com" ), 
+			settings.get( "mirrorAddress", "127.0.0.1" ), 
 			settings.get("mirrorPort", 9100 ) ) )
 		{
 			if ( MessageBox( NULL, _T("Failed to check for updates, continue?"), _T("Failure"), MB_YESNO ) != IDYES )

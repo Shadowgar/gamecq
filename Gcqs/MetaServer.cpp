@@ -237,35 +237,8 @@ void MetaServer::onReceive( dword clientId, byte message, const InStream & input
 
 				id.left( 50 );
 
-				LOG_STATUS( "MetaServer", "Client %u login by proxy with MD5, id = %s", clientId, id.cstr() );
-
-
-				Database * pDB = getConnection();
-
-				CharString find = addSlash( id );
-				Database::Query result( pDB->query( CharString().format( "SELECT user_id, user_password FROM users WHERE loginname='%s' OR username='%s'", 
-					find.cstr(), find.cstr() ) ) );
-
-				dword userId = 0;
-				for(int i=0;i<result.rows();i++)
-				{
-					CharString password( (const char *)result[i][1] );
-					
-					// found a username match, check the passwords!
-					if ( md5 == password )
-					{
-						userId = result[i][0];
-						break;
-					}
-				}
-
-				freeConnection( pDB );
-
-				MetaClient::Profile profile;
-				if ( userId != 0 && getProfile( getGameId( clientId ), userId, profile ) )
-					send( clientId, MetaClient::CLIENT_RECV_PROFILE) << job << MetaClient::RESULT_OKAY << profile;
-				else
-					send( clientId, MetaClient::CLIENT_RECV_PROFILE) << job << MetaClient::RESULT_ERROR;
+				LOG_STATUS( "MetaServer", "Rejecting legacy proxy login for client %u, id = %s", clientId, id.cstr() );
+				send( clientId, MetaClient::CLIENT_RECV_PROFILE) << job << MetaClient::RESULT_ERROR;
 			}
 		}
 		break;
@@ -280,8 +253,8 @@ void MetaServer::onReceive( dword clientId, byte message, const InStream & input
 			CharString password;
 			input >> password;
 
-			LOG_STATUS( "MetaServer", "Client %u creating new login, name = %s, password = %s, email = %s", 
-				clientId, profile.name.cstr(), password.cstr(), profile.email.cstr() );
+			LOG_STATUS( "MetaServer", "Client %u creating new login, name = %s, email = %s", 
+				clientId, profile.name.cstr(), profile.email.cstr() );
 
 			if( validateMID( mid ) )
 			{

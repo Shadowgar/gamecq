@@ -303,7 +303,7 @@ int main( int argc, char ** argv )
 	context.gameId = settings.get( "gameId", 1 );
 	context.processGroup = settings.get( "processGroup", 1 );
 	context.networkGroup = settings.get( "networkGroup", 1 );
-	context.metaAddress = settings.get( "metaAddress", "meta-server.palestar.com" );
+	context.metaAddress = settings.get( "metaAddress", "127.0.0.1" );
 	context.metaPort = settings.get( "metaPort", 9000 );
 	context.uid = settings.get( "uid", "DSS" );
 	context.pw = settings.get( "pw", "darkspace" );
@@ -348,7 +348,7 @@ int main( int argc, char ** argv )
 			// check for new code update
 			MirrorClient mirrorClient;
 			if ( mirrorClient.open( 
-				settings.get( "mirrorAddress", "mirror-server.palestar.com" ),
+				settings.get( "mirrorAddress", "127.0.0.1" ),
 				settings.get( "mirrorPort", 9200 ), sPath, NULL, true ) )
 			{
 				// attempt to login, ingore if failed

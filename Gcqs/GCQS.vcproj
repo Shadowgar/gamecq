@@ -680,11 +680,11 @@
 		/>
 		<Global
 			Name="WinGDB_Q2OnqQD6oGCRz0_kaDwI0w_strBuildHostLogin"
-			Value="builder:god2899@build:2200"
+			Value="builder@example.invalid:22"
 		/>
 		<Global
 			Name="WinGDB_Q2OnqQD6oGCRz0_kaDwI0w_strDebugHostLogin"
-			Value="builder:god2899@build:2200"
+			Value="builder@example.invalid:22"
 		/>
 		<Global
 			Name="WinGDB_Q2OnqQD6oGCRz0_kaDwI0w_strMakefileCFLAGS"
@@ -768,11 +768,11 @@
 		/>
 		<Global
 			Name="WinGDB_y5ae2_7c6uwsyqFE-lN4Bg_strBuildHostLogin"
-			Value="builder:god2899@build:2200"
+			Value="builder@example.invalid:22"
 		/>
 		<Global
 			Name="WinGDB_y5ae2_7c6uwsyqFE-lN4Bg_strDebugHostLogin"
-			Value="builder:god2899@build:2200"
+			Value="builder@example.invalid:22"
 		/>
 		<Global
 			Name="WinGDB_y5ae2_7c6uwsyqFE-lN4Bg_strMakefileCFLAGS"

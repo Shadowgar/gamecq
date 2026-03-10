@@ -27,7 +27,7 @@ public:
 		new FileReactor( logFile, nLogLevel, logExclude );
 
 		m_GameID = settings.get( "gameId", (dword)1 );
-		m_MetaAddress = settings.get( "metaAddress", "meta-server.palestar.com" );
+		m_MetaAddress = settings.get( "metaAddress", "127.0.0.1" );
 		m_MetaPort = settings.get( "metaPort", 9000 );
 		m_UID = settings.get( "uid", "");
 		m_PW = settings.get( "pw", "" );
