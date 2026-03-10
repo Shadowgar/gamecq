@@ -63,6 +63,11 @@ if ($mysqlLibPattern.Count -eq 0) {
     $missing.Add("Missing runtime binary: $binDir\\libmysqlclient.so*")
 }
 
+$luaLibPattern = Get-ChildItem -Path $binDir -Filter "liblua5.1.so*" -File -ErrorAction SilentlyContinue
+if ($luaLibPattern.Count -eq 0) {
+    $missing.Add("Missing runtime binary: $binDir\\liblua5.1.so*")
+}
+
 $requiredConfigFiles = @(
     "MetaServer.ini",
     "ProcessServer.ini",

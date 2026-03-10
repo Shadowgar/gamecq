@@ -31,9 +31,14 @@ MYSQL_LIB_DIR="${BUILD_ROOT}/gamecq/ThirdParty/mysql/x86-Linux/lib"
 rm -f "${MYSQL_LIB_DIR}/libmysqlclient.a" "${MYSQL_LIB_DIR}/libmysqlclient.so" "${MYSQL_LIB_DIR}/libmysql.so"
 ln -s /usr/lib/x86_64-linux-gnu/libmysqlclient.so "${MYSQL_LIB_DIR}/libmysqlclient.so"
 
+# Replace bundled legacy 32-bit LuaJIT static libs with host-arch lua5.1 shared lib symlink.
+LUA_LIB_DIR="${BUILD_ROOT}/medusa/ThirdParty/LuaJIT/bin"
+rm -f "${LUA_LIB_DIR}/liblua51.a" "${LUA_LIB_DIR}/liblua51D.a" "${LUA_LIB_DIR}/liblua51.so"
+ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so "${LUA_LIB_DIR}/liblua51.so"
+
 build_release() {
   local dir="$1"
-  make -C "${dir}" BUILD_CONFIGURATION=ReleaseLinux CXX="g++ -fpermissive"
+  make -C "${dir}" BUILD_CONFIGURATION=ReleaseLinux CXX="g++ -fpermissive -DMEDUSA_DISABLE_LUA_JIT_MODULE"
 }
 
 # Core medusa libs
@@ -73,6 +78,7 @@ cp -f /usr/lib/x86_64-linux-gnu/libmysqlclient.so* gamecq/out/server-bootstrap/R
 
 cp -f darkspace/Bin/libDarkSpace.so darkspace/out/server-bootstrap/Release/
 cp -f darkspace/Bin/DarkSpaceServer darkspace/out/server-bootstrap/Release/
+cp -f /usr/lib/x86_64-linux-gnu/liblua5.1.so* darkspace/out/server-bootstrap/Release/
 
 mkdir -p "${SRC_ROOT}/medusa/out/server-bootstrap/Release"
 mkdir -p "${SRC_ROOT}/gamecq/out/server-bootstrap/Release"

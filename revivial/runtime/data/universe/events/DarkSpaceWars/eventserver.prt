@@ -1,0 +1,108 @@
+PRT
+B768E76C674D7856
+E9158D6B7F484812
+{
+[
+m_Name
+DarkSpace Wars
+]
+[
+m_Description
+In this fleetwars event factions have been split into subfactions (red team, blue team style) there will be a large arena with matches being same faction's ship vs same faction's ship so the outcome is based purly on pilot skill. As an added twist there will be an active Interdictor field boosted to 200% power (2,000GU in diameter) disabling all jumpdrives in the arena...
+]
+[
+m_Type
+1
+]
+[
+m_Script
+
+]
+[
+m_Scenery
+scenery\\wolf scenery.prt
+]
+[
+m_Position
+000000000000000000000000
+]
+[
+m_Zones
+1
+1
+universe\\events\\DarkSpaceWars\\center.prt
+000000000000000000000000
+]
+[
+m_Teams
+7
+4
+4
+
+Alpha UGTO
+United Galactic Trade Organization, fighting for a united humanity and a strong defense against common foes. By far the oldest faction in the Metaverse, the UGTO operates with a certain heavy-handed ethnocentric attitude due to their origins on Earth.
+00FFFF00
+ships\\ugto\\ugto fleet.prt
+2
+4
+4
+
+Alpha ICC
+Interstellar Cultural Confederation, fighting for planetary rights and freedom from oppression under the UGTO. Formerly composed of outlying UGTO colony worlds, the ICC has grown from a mutual defense pact to a major player across the Metaverse.
+FFFF0000
+ships\\icc\\icc fleet.prt
+2
+4
+4
+
+Alpha K'Luth
+The alien K'Luth, refugees of an attack in their galaxy, are fighting the humans for habitable space.
+FF00FF00
+ships\\kluth\\k'luth fleet.prt
+2
+4
+3
+
+Beta UGTO
+Originally setting their goals on world domination, the UGTO long ago completely controlled Earth.  Suffering from institutional drift and existential ennui, Grand Chancellor Yukio decides that stellar domination is a much more worthy goal, though he later extends that to galactic domination when it turns out the other Solar worlds willingly join the UGTO.  The imperialist forces now seek to subjugate anything they can find.
+C0DCC000
+ships\\ugto\\ugto fleet.prt
+2
+4
+3
+
+Beta ICC
+Originally designated "the meek outer colonies," the planets that would become the ICC were at first willing to roll over for the imperialistic UGTO under Grand Chancellor Yukio.  Eventually, however, a Mr Sheng pointed out that long ago the inheritance of the Earth was promised to the meek.  
+80800000
+ships\\icc\\icc fleet.prt
+2
+4
+3
+
+Beta K'Luth
+The Beta K'Luth share 99.9% of their genome with their Alphatic brethren, but the 0.1% makes all the difference.  The mutation arose from the popularity of TRUsticks, a popular radioactive lollipop in the home system of the Betars.  The slight deviation in genetics make the Betars hostile to even the Alphallic K'Luth.  In fact, they pretty much hate everything.
+0000FF00
+ships\\kluth\\k'luth fleet.prt
+2
+4
+2
+
+Null Spawner
+Team Description
+00000000
+
+3
+]
+[
+m_Conditions
+0
+]
+[
+m_TimeLimit
+0
+]
+[
+m_UniversePort
+
+]
+}

@@ -1,0 +1,94 @@
+PRT
+B768E76C674D7856
+2FC7A045E3E8D7E7
+{
+[
+m_Name
+General Offensive
+]
+[
+m_Description
+With resources flowing again, ICC and UGTO square off near Zarathalus, a system outside the Remnence nebula. Chaotic gravity wells inside the nebula make entry via tachyon jumps extremely difficult, and Zarathalus is in gatekeeper position for one of the safest routes in.
+]
+[
+m_Type
+0
+]
+[
+m_Script
+
+]
+[
+m_Scenery
+scenery\\luyten scenery.prt
+]
+[
+m_Position
+000000000000000000000000
+]
+[
+m_Zones
+1
+1
+universe\\scenario\\systems\\mayhem.prt
+000000000000000000000000
+]
+[
+m_Teams
+2
+4
+2
+
+UGTO
+The "Farstars" have finally decided to make their move. Although we do not fully recognize their independence from the Trade Organization, their military and economic might are not to be trifled with. However, there is nothing to worry over - our experienced captains and tested military hardware will be more then enough for whatever they throw at us. 
+00FFFF00
+ships\\ugto\\ugto fleet.prt
+0
+4
+3
+
+ICC
+It's time to show those imperialistic fools what we are made of. The superior technology and tacticians of the Commonwealth will prove to the Trade Organization that we are more than capable of withstanding anything they can throw at us. Victory in Luyten is the first step towards seizing our independence. Onward! 
+FFFF0000
+ships\\icc\\icc fleet.prt
+0
+]
+[
+m_Conditions
+2
+We've secured a vector into the nebula, but unfriendlies are still in the area\r\nLong range sensors are showing some odd readings, and we've lost several scout ships at the edge of the nebula. It's probably just UGTO trying to sabotage our installtions here as we move our fleet into the nebula.
+2
+2
+Capture Wiseam
+00000000
+3
+Wiseam
+2
+Capture Primus
+00000000
+3
+Primus
+universe\\scenario\\2-5 LSR cato.prt
+We've shut ICC out from easy travel into the nebula, they'll have to find another, more dangerous route. We're already seeing some odd sensor shadows at the edge of the nebula. That ought to thin their numbers somewhat.
+2
+2
+Capture Skelligh
+00000000
+2
+Skelligh
+2
+Capture Frazz
+00000000
+2
+Frazz
+universe\\scenario\\2-5 LSR cato.prt
+]
+[
+m_TimeLimit
+144000
+]
+[
+m_UniversePort
+
+]
+}

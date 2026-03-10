@@ -1,0 +1,124 @@
+PRT
+B768E76C674D7856
+F47F721D4B6F4465
+{
+[
+m_Name
+Tawny Marble
+]
+[
+m_Description
+BD+59*1915\r\n\r\nWhile their main fleets engaged in Gliese, the UGTO and ICC have deployed strike groups to BD+59. A dense planetary cluster will provide much needed resources to support the next push.
+]
+[
+m_Type
+0
+]
+[
+m_Script
+
+]
+[
+m_Scenery
+scenery\\bd 4344  scenery.prt
+]
+[
+m_Position
+000000000000000000000000
+]
+[
+m_Zones
+1
+1
+universe\\scenario\\systems\\bd591915.prt
+000000000000000000000000
+]
+[
+m_Teams
+2
+4
+2
+
+UGTO
+The "Farstars" have finally decided to make their move. Although we do not fully recognize their independence from the Trade Organization, their military and economic might are not to be trifled with. However, there is nothing to worry over - our experienced captains and tested military hardware will be more then enough for whatever they throw at us. 
+00FFFF00
+universe\\scenario\\fleets\\bd59 ugto fleet.prt
+0
+4
+3
+
+ICC
+It's time to show those imperialistic fools what we are made of. The superior technology and tacticians of the Commonwealth will prove to the Trade Organization that we are more than capable of withstanding anything they can throw at us. Victory in Luyten is the first step towards seizing our independence. Onward! 
+FFFF0000
+universe\\scenario\\fleets\\bd59 icc fleet.prt
+0
+]
+[
+m_Conditions
+2
+We prevented the ICC from landing a foothold in this system. We must now ramp up our production and reinforce the fleet despite lingering elements of ICC's forces.
+5
+2
+Capture Dajacet
+00000000
+2
+Dajacet
+2
+Capture Kareaa
+00000000
+2
+Kareaa
+2
+Capture Lycohfashat
+00000000
+2
+Lycohfashat
+2
+Capture Myto
+00000000
+2
+Myto
+2
+Capture Yeolav
+00000000
+2
+Yeolav
+universe\\scenario\\2-3 contorius.prt
+Despite harrying attacks from elements of UGTO's Fourth Fleet, our posession of this system is now uncontested. We'll leave an engineering garrison here to supply weapons, and press onward.
+5
+2
+Capture Yeolav
+00000000
+3
+Yeolav
+2
+Capture Myto
+00000000
+3
+Myto
+2
+Capture Lycohfashat
+00000000
+3
+Lycohfashat
+2
+Capture Kareaa
+00000000
+3
+Kareaa
+2
+Capture
+00000000
+3
+Dajacet
+universe\\scenario\\2-3 contorius.prt
+]
+[
+m_TimeLimit
+144000
+]
+[
+m_UniversePort
+
+]
+}

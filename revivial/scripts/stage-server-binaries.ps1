@@ -74,4 +74,13 @@ foreach ($lib in $mysqlClientLibs) {
     Write-Host "Staged $($lib.Name)"
 }
 
+$luaLibs = Get-ChildItem -Path $sourceDarkspace -Filter "liblua5.1.so*" -File -ErrorAction SilentlyContinue
+if ($luaLibs.Count -eq 0) {
+    throw "Missing lua runtime libs for staging in: $sourceDarkspace"
+}
+foreach ($lib in $luaLibs) {
+    Copy-Item -LiteralPath $lib.FullName -Destination (Join-Path -Path $targetDir -ChildPath $lib.Name) -Force
+    Write-Host "Staged $($lib.Name)"
+}
+
 Write-Host "Server binary staging complete."

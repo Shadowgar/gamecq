@@ -11,6 +11,7 @@ RUN apt-get update \
        g++ \
        libc6-dev \
        default-libmysqlclient-dev \
+       liblua5.1-0-dev \
        bash \
     && rm -rf /var/lib/apt/lists/*
 

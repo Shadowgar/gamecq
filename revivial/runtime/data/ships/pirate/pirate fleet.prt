@@ -1,0 +1,29 @@
+PRT
+81E43ABEEBA73F04
+4FD523A969D4E0F3
+{
+[
+m_Type
+9F4E3C224151B86D
+]
+[
+m_Collection
+16
+ships\\pirate\\transport\\hauler\\sc_hauler.PRT
+ships\\pirate\\frigate\\raider\\sc_raider.PRT
+ships\\pirate\\frigate\\corvette\\sc_corvette.PRT
+ships\\pirate\\supply\\tender\\sc_tender.PRT
+ships\\pirate\\destroyer\\c208cvm\\sc_c208cvm.PRT
+ships\\pirate\\scout\\ray e\\sc_ray_e.PRT
+ships\\pirate\\scout\\ray as\\sc_ray_as.PRT
+ships\\pirate\\scout\\ray a\\sc_ray_a.prt
+ships\\pirate\\frigate\\raider t\\sc_raider.prt
+ships\\pirate\\station\\Nautilus\\sc_nautilus.prt
+ships\\pirate\\destroyer\\bombard\\sc_bombard.prt
+ships\\pirate\\destroyer\\sloop\\sc_sloop.prt
+ships\\pirate\\engineer\\engineer\\sc_engineer.prt
+ships\\pirate\\cruiser\\m248 b\\sc_m248b.prt
+ships\\pirate\\cruiser\\rogens\\sc_rogens.prt
+
+]
+}

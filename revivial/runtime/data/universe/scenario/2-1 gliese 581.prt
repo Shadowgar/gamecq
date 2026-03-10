@@ -1,0 +1,94 @@
+PRT
+B768E76C674D7856
+A702B873DA9B7720
+{
+[
+m_Name
+Project Coral
+]
+[
+m_Description
+Their fleets depleted from years of war, the UGTO and ICC find themselves at Gliese 581. Critically low on materials, and far from homeworld supply lines, weary commanders forego usual fleet compositions, opting instead to deploy carrier craft.
+]
+[
+m_Type
+0
+]
+[
+m_Script
+
+]
+[
+m_Scenery
+scenery\\sanity scenery 4.prt
+]
+[
+m_Position
+000000000000000000000000
+]
+[
+m_Zones
+1
+1
+universe\\scenario\\systems\\gliese 581.prt
+000000000000000000000000
+]
+[
+m_Teams
+2
+4
+2
+
+UGTO
+An ICC strike force has entered the system and our heavy combat ships are out of position holding the line in Lalande. The only ships available to defend the system are a Carrier group doing a training run. Time to use our fighters to show the rebels who's boss around here.
+00FFFF00
+universe\\scenario\\fleets\\gliese ugto fleet.prt
+0
+4
+3
+
+ICC
+Fleet Command has ordered the ICC 12th Carrier Squadron to take this system as a staging point for the final attack on Sol. Defeat could delay the attack by months and give UGTO time to regroup, so victory is a must if we are to finally secure our independence.
+FFFF0000
+universe\\scenario\\fleets\\gliese icc fleet.prt
+0
+]
+[
+m_Conditions
+2
+The ICC 12th Carrier Squadron has captured the Gliese 581 system from the UGTO. More ICC forces are inbound to resupply and regroup before their final assualt on the UGTO home system, Sol.
+2
+2
+Capture Ibubim
+00000000
+3
+Ibubim
+2
+Capture Unijevi
+00000000
+3
+Unijevi
+universe\\scenario\\2-2 bd591915.prt
+Our exceptional trainees in the 4th Carrier Fleet have held off the ICC attack and secured our home systems from further attack. Reinforcements have arrived to keep watch over the Gliese 581 system, and our proven Carrier fleet has been reassigned to the front lines as a part of the UGTO counter attack on ICC forward positions.
+2
+2
+Capture Anevuk
+00000000
+2
+Anevuk
+2
+Capture Buhuho
+00000000
+2
+Buhuho
+universe\\scenario\\2-2 bd591915.prt
+]
+[
+m_TimeLimit
+144000
+]
+[
+m_UniversePort
+
+]
+}

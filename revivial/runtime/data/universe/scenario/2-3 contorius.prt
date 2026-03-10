@@ -1,0 +1,104 @@
+PRT
+B768E76C674D7856
+D94C95DFA53D9AFF
+{
+[
+m_Name
+Disassembly Line
+]
+[
+m_Description
+Contorius\r\n\r\nAll commerce though the Contorius system is goverened by control of the Zovathash cluster under the influence of merchant guilds with sympathies to the ICC. Despite a weaker tactical position, UGTO can stage a diversion by setting up a base on Chalis or its moons.\r\n\r\nFor both factions, this looks to be a battle of attrition.
+]
+[
+m_Type
+0
+]
+[
+m_Script
+
+]
+[
+m_Scenery
+scenery\\luyten scenery.prt
+]
+[
+m_Position
+000000000000000000000000
+]
+[
+m_Zones
+1
+1
+universe\\scenario\\systems\\contorius.prt
+000000000000000000000000
+]
+[
+m_Teams
+2
+4
+2
+
+UGTO
+The mission for the UGTO 151st Delta Squadron is to defend Sidereus and its satellites from rebel clutches, whilst attempting to capture Zovathash and its satellites from the rebels. 
+00FFFF00
+ships\\ugto\\ugto fleet.prt
+0
+4
+3
+
+ICC
+Your mission in the ICC 49th elite squadron is to defend Zovathash and its satellites from rebel clutches, whilst attempting to capture Sidereus and its satellites from the rebels. 
+FFFF0000
+ships\\icc\\icc fleet.prt
+0
+]
+[
+m_Conditions
+2
+With help from a forward post on Chalis, our salient offense drove a lance into fortified ICC positions at Zovathash. However, the victory has been a costly one.
+3
+2
+Capture Shasha
+00000000
+2
+Shasha
+2
+Capture Ugathatac
+00000000
+2
+Ugathatac
+2
+Capture Mgat
+00000000
+2
+Mgat
+universe\\scenario\\2-4 zarathalus.prt
+UGTO attempted to shut down our supply line in Contorius, yet their repeated attacks proved unsuccessful for our entrenched defenses.
+3
+2
+Capture Cidawmza
+00000000
+3
+Cidawmza
+2
+Capture Aawa
+00000000
+3
+Aawa
+2
+Capture Woq
+00000000
+3
+Woq
+universe\\scenario\\2-4 zarathalus.prt
+]
+[
+m_TimeLimit
+144000
+]
+[
+m_UniversePort
+
+]
+}

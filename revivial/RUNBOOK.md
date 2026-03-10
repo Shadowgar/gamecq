@@ -101,6 +101,17 @@ This produces:
 - `MirrorServer.ini` (rewritten to use `metaserver` and `../mirror/`)
 - `config.ini` (DarkSpaceServer config rewritten for container paths and `metaserver`)
 
+## Stage DarkSpace server data
+
+Copy DarkSpace port data required by `DarkSpaceServer` context loading:
+
+```powershell
+Set-Location d:\DarkSpace\gamecq\revivial
+powershell -ExecutionPolicy Bypass -File .\scripts\stage-darkspace-data.ps1
+```
+
+This stages `darkspace/Ports/*` into `runtime/data`.
+
 ## Validate runtime layout before compose
 
 Run preflight validation:
@@ -119,6 +130,11 @@ Compose/runtime contract is in place, but this repo does not yet produce Linux s
 Database service is currently started with `--sql_mode=` to accept legacy `gamecq.sql` defaults.
 
 Server services now reference configs from `runtime/config` (`../config/*.ini`) and the runner entrypoint fails fast if the service binary or config file is missing.
+
+Current runtime blocker after bootstrap build:
+
+- `metaserver` container is currently restarting with exit code `139` (segfault) in full-stack compose run.
+- Other services (`db`, `web`, `processserver`, `mirrorserver`, `darkspaceserver`) can be brought up with the current bootstrap pipeline.
 
 ## Web service note
 

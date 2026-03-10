@@ -26,6 +26,7 @@ fi
 
 mkdir -p /opt/darkspace/bin /opt/darkspace/config /opt/darkspace/logs
 chown -R "${RUN_AS_UID}:${RUN_AS_GID}" /opt/darkspace
+export LD_LIBRARY_PATH="/opt/darkspace/bin:${LD_LIBRARY_PATH:-}"
 
 service_bin="${cmd_parts[0]}"
 service_bin="${service_bin#./}"
@@ -48,4 +49,4 @@ if [[ "${#cmd_parts[@]}" -gt 1 ]]; then
 fi
 
 echo "Starting service: ${SERVICE_CMD}"
-exec gosu "${RUN_AS_UID}:${RUN_AS_GID}" bash -lc "cd /opt/darkspace/bin && ${SERVICE_CMD}"
+exec gosu "${RUN_AS_UID}:${RUN_AS_GID}" bash -lc "export LD_LIBRARY_PATH=/opt/darkspace/bin:\${LD_LIBRARY_PATH:-}; cd /opt/darkspace/bin && ${SERVICE_CMD}"

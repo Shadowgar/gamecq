@@ -22,6 +22,7 @@ This folder tracks all server orchestration work in `gamecq`.
 - `scripts/stage-medusa-runtime.ps1`: stages shared Medusa runtime artifacts into `runtime/bin`
 - `scripts/stage-server-binaries.ps1`: stages built server executables into `runtime/bin`
 - `scripts/stage-server-config.ps1`: stages container-ready server config files into `runtime/config`
+- `scripts/stage-darkspace-data.ps1`: stages `darkspace/Ports` content into `runtime/data`
 - `scripts/validate-runtime.ps1`: validates required runtime layout before compose startup
 - `COMPONENT_MAP.md`: service ownership and dependencies
 - `DRIFT_LOG.md`: append-only change history

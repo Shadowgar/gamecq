@@ -71,6 +71,19 @@
     - `darkspace/out/server-bootstrap/Release`
 - Updated runtime preflight contract:
   - `revivial/scripts/validate-runtime.ps1` now checks Linux container runtime dependencies (`lib*.so`) instead of Windows DLL names.
+- Added DarkSpace data staging automation:
+  - `revivial/scripts/stage-darkspace-data.ps1` stages `darkspace/Ports/*` into `revivial/runtime/data` for `DarkSpaceServer` context/resource loading.
+- Added legacy Linux build compatibility fixes:
+  - builder now compiles in case-sensitive in-container workspace copy (Windows mount cannot host mixed-case path aliases).
+  - builder injects `-fpermissive` and `-DMEDUSA_DISABLE_LUA_JIT_MODULE` for legacy 64-bit portability.
+  - builder replaces incompatible bundled mysql/lua static libs with host-arch compatibility libs for Linux bootstrap linking.
+- Runtime loader fix:
+  - `docker/runner/entrypoint.sh` now exports `LD_LIBRARY_PATH` both before and inside `gosu` execution context.
+- Validation status snapshot:
+  - Linux legacy build script completes and emits artifacts into `*/out/server-bootstrap/Release`.
+  - `stage-server-binaries.ps1`, `stage-server-config.ps1`, `stage-darkspace-data.ps1`, and `validate-runtime.ps1` all pass.
+  - Full compose stack starts; `db`, `web`, `processserver`, `mirrorserver`, `darkspaceserver` are up.
+  - `metaserver` currently restarts with exit code `139` (segfault) and remains the active blocker.
 
 ## Notes
 
