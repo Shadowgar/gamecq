@@ -14,6 +14,8 @@ This folder tracks all server orchestration work in `gamecq`.
 
 ## Canonical files in this folder
 
+- `GRAND_PLAN.md`: cross-repo strategy that ties `gamecq`, `darkspace`, and `medusa` together
+- `REVIVAL_PLAN.md`: repo-specific audit and execution plan for services, data, and operations
 - `docker-compose.server.yml`: backend stack definition
 - `.env.example`: required runtime variables
 - `docker/runner/`: generic Linux runner image and entrypoint
@@ -26,7 +28,7 @@ This folder tracks all server orchestration work in `gamecq`.
 - `scripts/validate-runtime.ps1`: validates required runtime layout before compose startup
 - `COMPONENT_MAP.md`: service ownership and dependencies
 - `DRIFT_LOG.md`: append-only change history
-- `MODERNIZATION_PLAN.md`: backend modernization phases
+- `MODERNIZATION_PLAN.md`: earlier tactical modernization phases retained for continuity
 
 ## Drift control rules
 

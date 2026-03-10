@@ -110,6 +110,16 @@
     - uses quiet make mode (`-s`) to reduce terminal spam
     - suppresses non-actionable compiler warning noise via `-w` in bootstrap CXX flags
   - Verified bootstrap build now completes in finite time after patch (no infinite hang); runtime remains blocked by server segfault issues.
+- DB/runtime compatibility pass started:
+  - `GCQDB/DatabaseMYSQL.cpp`
+    - replaced raw `MYSQL` object lifetime assumptions with `mysql_init()`/`mysql_close()`
+    - switched insert-id access to `mysql_insert_id()`
+    - added MariaDB connection option handling for reconnect/protocol/SSL defaults
+  - `revival/docker/builder/build-legacy-linux.sh`
+    - builder now resets copied release object/output directories before rebuild to avoid mixed stale/new artifacts
+  - `revival/GRAND_PLAN.md`
+  - `revival/REVIVAL_PLAN.md`
+    - repo plan now prioritizes DB boundary rewrite and short deterministic service smoke tests over long restart loops.
 
 ## Notes
 

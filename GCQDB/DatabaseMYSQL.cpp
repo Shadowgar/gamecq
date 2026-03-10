@@ -50,7 +50,7 @@ bool DatabaseMYSQL::success() const
 
 dword DatabaseMYSQL::insertId() const
 {
-	return m_pDB != NULL ? (dword)m_pDB->insert_id : -1;
+	return m_pDB != NULL ? (dword)mysql_insert_id( m_pDB ) : -1;
 }
 
 dword DatabaseMYSQL::fields(QueryHandle hQuery) const
@@ -144,12 +144,36 @@ bool DatabaseMYSQL::open( const char * pName, const char * pAddress,
 								unsigned int nPort, const char * pUID, const char * pPW )
 {
 	close();
-	
-	m_pDB = new MYSQL();
-	mysql_init( m_pDB );
+
+	m_pDB = mysql_init( NULL );
+	if ( m_pDB == NULL )
+		return false;
+
+#if defined(MYSQL_OPT_PROTOCOL) && defined(MYSQL_PROTOCOL_TCP)
+	unsigned int nProtocol = MYSQL_PROTOCOL_TCP;
+	mysql_options( m_pDB, MYSQL_OPT_PROTOCOL, (const char *)&nProtocol );
+#endif
+
+#if defined(MYSQL_OPT_RECONNECT)
+	my_bool bReconnect = 1;
+	mysql_options( m_pDB, MYSQL_OPT_RECONNECT, (const char *)&bReconnect );
+#endif
+
+#if defined(MYSQL_OPT_SSL_ENFORCE)
+	my_bool bDisableSSL = 0;
+	mysql_options( m_pDB, MYSQL_OPT_SSL_ENFORCE, (const char *)&bDisableSSL );
+#endif
+
+#if defined(MYSQL_OPT_SSL_VERIFY_SERVER_CERT)
+	my_bool bDisableVerify = 0;
+	mysql_options( m_pDB, MYSQL_OPT_SSL_VERIFY_SERVER_CERT, (const char *)&bDisableVerify );
+#endif
 
 	if (! mysql_real_connect( m_pDB, pAddress, pUID, pPW, pName, nPort, NULL, 0 ) )
+	{
+		close();
 		return false;
+	}
 	m_bConnected = true;
 
 	return true;
@@ -160,10 +184,9 @@ void DatabaseMYSQL::close()
 	if ( m_pDB != NULL )
 	{
 		mysql_close( m_pDB );
-
-		delete m_pDB;
 		m_pDB = NULL;
 	}
+	m_bConnected = false;
 }
 
 //----------------------------------------------------------------------------
